@@ -6,7 +6,7 @@
     <title>Panel de Administración - Dashboard Corporativo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/home.css">
+    <link rel="stylesheet" href="<?php echo base_path('assets/css/home.css'); ?>">
 </head>
 <body>
 <div class="container py-4">
@@ -16,8 +16,8 @@
             <small class="text-muted">Versión <?php echo APP_VERSION; ?></small>
         </div>
         <div>
-            <a href="/" class="btn btn-outline-secondary me-2">Ver panel público</a>
-            <a href="/logout.php" class="btn btn-danger">Cerrar sesión</a>
+            <a href="<?php echo BASE_PATH === '' ? '/' : BASE_PATH . '/'; ?>" class="btn btn-outline-secondary me-2">Ver panel público</a>
+            <a href="<?php echo base_path('logout.php'); ?>" class="btn btn-danger">Cerrar sesión</a>
         </div>
     </div>
 

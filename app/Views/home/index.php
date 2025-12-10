@@ -6,11 +6,11 @@
     <title>Dashboard Corporativo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/home.css">
+    <link rel="stylesheet" href="<?php echo base_path('assets/css/home.css'); ?>">
 </head>
 <body>
     <div class="dashboard-container">
-        <a href="/login.php" class="admin-float-button">
+        <a href="<?php echo base_path('login.php'); ?>" class="admin-float-button">
             <i class="fas fa-cog"></i>
         </a>
         <div class="main-grid">

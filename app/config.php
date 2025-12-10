@@ -4,7 +4,27 @@ session_start();
 // Configuración de la aplicación
 const APP_NAME = 'Dashboard Corporativo';
 const APP_VERSION = '1.0.0';
-const BASE_URL = 'http://localhost/';
+
+// Base URL dinámica para funcionar en subdirectorios
+$scriptPath = str_replace('\\', '/', $_SERVER['SCRIPT_NAME'] ?? '');
+$computedBasePath = rtrim(dirname($scriptPath), '/');
+
+// Normalizar base path
+if ($computedBasePath === '.' || $computedBasePath === '/') {
+    $computedBasePath = '';
+}
+
+define('BASE_PATH', $computedBasePath);
+define(
+    'BASE_URL',
+    sprintf(
+        '%s://%s%s%s',
+        (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http',
+        $_SERVER['HTTP_HOST'] ?? 'localhost',
+        $computedBasePath,
+        $computedBasePath === '' ? '/' : ''
+    )
+);
 
 // Configuración de la base de datos
 const DB_HOST = 'localhost';

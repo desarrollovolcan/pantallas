@@ -9,13 +9,13 @@ class Auth
     public static function requireAuth(): void
     {
         if (!self::check()) {
-            header('Location: /login.php');
+            header('Location: ' . base_path('login.php'));
             exit();
         }
 
         if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > SESSION_TIMEOUT)) {
             session_destroy();
-            header('Location: /login.php');
+            header('Location: ' . base_path('login.php'));
             exit();
         }
 

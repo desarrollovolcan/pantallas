@@ -27,13 +27,13 @@ class AuthController extends Controller
         }
 
         Auth::login((int) $admin['id'], $admin['usuario']);
-        header('Location: /admin/dashboard.php');
+        header('Location: ' . base_path('admin/dashboard.php'));
     }
 
     public function logout(): void
     {
         Auth::logout();
-        header('Location: /');
+        header('Location: ' . (BASE_PATH === '' ? '/' : BASE_PATH . '/'));
     }
 }
 ?>
