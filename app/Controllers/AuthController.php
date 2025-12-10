@@ -27,7 +27,7 @@ class AuthController extends Controller
         }
 
         Auth::login((int) $admin['id'], $admin['usuario']);
-        header('Location: /admin/dashboard');
+        header('Location: /admin/dashboard.php');
     }
 
     public function logout(): void

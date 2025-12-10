@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="dashboard-container">
-        <a href="/login" class="admin-float-button">
+        <a href="/login.php" class="admin-float-button">
             <i class="fas fa-cog"></i>
         </a>
         <div class="main-grid">

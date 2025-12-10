@@ -17,7 +17,7 @@
         </div>
         <div>
             <a href="/" class="btn btn-outline-secondary me-2">Ver panel público</a>
-            <a href="/logout" class="btn btn-danger">Cerrar sesión</a>
+            <a href="/logout.php" class="btn btn-danger">Cerrar sesión</a>
         </div>
     </div>
 

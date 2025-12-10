@@ -14,7 +14,7 @@
             <?php if (!empty($error)): ?>
                 <div class="alert alert-danger"><?php echo htmlspecialchars($error); ?></div>
             <?php endif; ?>
-            <form method="POST" action="/login">
+            <form method="POST" action="/login.php">
                 <div class="mb-3">
                     <label for="usuario" class="form-label">Usuario</label>
                     <input type="text" class="form-control" id="usuario" name="usuario" required>
