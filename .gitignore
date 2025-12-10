@@ -1,0 +1,3 @@
+# Archivos generados por la instalación automática del proyecto MVC
+mvc_app/config/.installed
+mvc_app/storage/*.sqlite
