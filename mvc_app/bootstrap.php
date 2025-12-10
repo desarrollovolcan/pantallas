@@ -54,7 +54,6 @@ try {
 } catch (\Throwable $exception) {
     http_response_code(500);
     $message = $exception->getMessage();
-    $help = 'Verifica que PHP tenga habilitado pdo_sqlite y que la carpeta mvc_app/storage sea escribible.';
-    echo "<h1>Error al iniciar la aplicación</h1><p>{$message}</p><p>{$help}</p>";
+    echo "<h1>Error al iniciar la aplicación</h1><p>{$message}</p>";
     exit;
 }

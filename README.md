@@ -20,5 +20,4 @@ La primera carga ejecuta el instalador, crea `mvc_app/storage/database.sqlite`, 
 Puedes consultar el estado del proyecto en `/status` para verificar que la instalación se completó correctamente.
 
 ## Solución de problemas
-- Si ves un error 500 al cargar la app, asegúrate de que PHP tenga habilitada la extensión `pdo_sqlite`.
-- Verifica que la carpeta `mvc_app/storage` exista o sea escribible; el proyecto la crea automáticamente, pero en entornos restringidos podrías necesitar ajustarle permisos.
+- Si ves un error 500 al cargar la app, revisa los mensajes que muestre la página para identificar el problema específico.
