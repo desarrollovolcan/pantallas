@@ -1,2 +1,20 @@
 # pantallas
-Pantallas corporativaas
+
+Nuevo ejemplo MVC (PHP + SQLite) basado en la estructura existente. Incluye instalador automático para generar la base de datos y un usuario administrador al abrir el proyecto por primera vez.
+
+## Requerimientos
+- PHP 8.1+ con extensión `pdo_sqlite` disponible.
+
+## Cómo ejecutar
+1. Instala dependencias del sistema si aún no las tienes (solo PHP con SQLite es necesario).
+2. Inicia el servidor embebido de PHP apuntando al front controller del nuevo proyecto:
+   ```bash
+   php -S localhost:8000 -t mvc_app/public
+   ```
+3. Abre `http://localhost:8000` en tu navegador.
+
+La primera carga ejecuta el instalador, crea `mvc_app/storage/database.sqlite`, genera las tablas `users` y `screens` y registra el usuario administrador:
+- Usuario: `admin@local`
+- Contraseña: `admin123`
+
+Puedes consultar el estado del proyecto en `/status` para verificar que la instalación se completó correctamente.
