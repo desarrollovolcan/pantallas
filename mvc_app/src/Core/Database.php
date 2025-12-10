@@ -25,10 +25,14 @@ class Database
             throw new \InvalidArgumentException('Only sqlite is supported in this demo.');
         }
 
+        if (!extension_loaded('pdo_sqlite')) {
+            throw new \RuntimeException('La extensión pdo_sqlite no está habilitada en PHP. Actívala para continuar.');
+        }
+
         $databasePath = $this->config['database'] ?? __DIR__ . '/../../storage/database.sqlite';
         $storageDir = dirname($databasePath);
-        if (!is_dir($storageDir)) {
-            mkdir($storageDir, 0777, true);
+        if (!is_dir($storageDir) && !mkdir($storageDir, 0777, true) && !is_dir($storageDir)) {
+            throw new \RuntimeException('No se pudo crear el directorio de almacenamiento para la base de datos.');
         }
 
         try {

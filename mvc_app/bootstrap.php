@@ -28,25 +28,33 @@ $dbConfig = require __DIR__ . '/config/database.php';
 
 date_default_timezone_set($config['timezone'] ?? 'UTC');
 
-$database = new Database($dbConfig);
-$installer = new Installer(
-    $database,
-    __DIR__ . '/config/.installed'
-);
+try {
+    $database = new Database($dbConfig);
+    $installer = new Installer(
+        $database,
+        __DIR__ . '/config/.installed'
+    );
 
-$installerMessage = $installer->install();
+    $installerMessage = $installer->install();
 
-$container = [
-    'config' => $config,
-    'db' => $database,
-    'installerMessage' => $installerMessage,
-];
+    $container = [
+        'config' => $config,
+        'db' => $database,
+        'installerMessage' => $installerMessage,
+    ];
 
-$router = new Router($container);
-$router->get('/', [HomeController::class, 'index']);
-$router->get('/status', [HomeController::class, 'status']);
+    $router = new Router($container);
+    $router->get('/', [HomeController::class, 'index']);
+    $router->get('/status', [HomeController::class, 'status']);
 
-return [
-    'router' => $router,
-    'container' => $container,
-];
+    return [
+        'router' => $router,
+        'container' => $container,
+    ];
+} catch (\Throwable $exception) {
+    http_response_code(500);
+    $message = $exception->getMessage();
+    $help = 'Verifica que PHP tenga habilitado pdo_sqlite y que la carpeta mvc_app/storage sea escribible.';
+    echo "<h1>Error al iniciar la aplicación</h1><p>{$message}</p><p>{$help}</p>";
+    exit;
+}
