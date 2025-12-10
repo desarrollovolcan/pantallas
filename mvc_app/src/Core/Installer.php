@@ -19,26 +19,49 @@ class Installer
         }
 
         $pdo = $this->database->pdo();
-        $pdo->exec('CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT NOT NULL,
-            email TEXT NOT NULL UNIQUE,
-            password TEXT NOT NULL,
-            created_at TEXT NOT NULL
-        )');
+        $driver = $this->database->driver();
 
-        $pdo->exec('CREATE TABLE IF NOT EXISTS screens (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            title TEXT NOT NULL,
-            content TEXT NOT NULL,
-            published_at TEXT
-        )');
-
+        $this->createTables($pdo, $driver);
         $this->seed($pdo);
 
         file_put_contents($this->installedFlag, 'installed:' . date('c'));
 
         return 'Instalación automática completada. Se generó la base de datos y un usuario administrador (admin@local / admin123).';
+    }
+
+    private function createTables(PDO $pdo, string $driver): void
+    {
+        if ($driver === 'mysql') {
+            $pdo->exec('CREATE TABLE IF NOT EXISTS users (
+                id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                name VARCHAR(100) NOT NULL,
+                email VARCHAR(150) NOT NULL UNIQUE,
+                password VARCHAR(255) NOT NULL,
+                created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci');
+
+            $pdo->exec('CREATE TABLE IF NOT EXISTS screens (
+                id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                title VARCHAR(150) NOT NULL,
+                content TEXT NOT NULL,
+                published_at DATETIME NULL
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci');
+        } else {
+            $pdo->exec('CREATE TABLE IF NOT EXISTS users (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL,
+                email TEXT NOT NULL UNIQUE,
+                password TEXT NOT NULL,
+                created_at TEXT NOT NULL
+            )');
+
+            $pdo->exec('CREATE TABLE IF NOT EXISTS screens (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                title TEXT NOT NULL,
+                content TEXT NOT NULL,
+                published_at TEXT
+            )');
+        }
     }
 
     private function seed(PDO $pdo): void
