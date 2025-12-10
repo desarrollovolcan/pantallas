@@ -1,0 +1,3 @@
+[25-Nov-2025 20:23:32 America/Santiago] PHP Fatal error:  Cannot redeclare convertToBytes() (previously declared in /home/adlinksc1/public_html/impa/admin/videos.php:280) in /home/adlinksc1/public_html/impa/config/php-config.php on line 42
+[25-Nov-2025 20:23:44 America/Santiago] PHP Fatal error:  Cannot redeclare convertToBytes() (previously declared in /home/adlinksc1/public_html/impa/admin/videos.php:280) in /home/adlinksc1/public_html/impa/config/php-config.php on line 42
+[25-Nov-2025 20:25:37 America/Santiago] PHP Fatal error:  Cannot redeclare convertToBytes() (previously declared in /home/adlinksc1/public_html/impa/admin/videos.php:280) in /home/adlinksc1/public_html/impa/config/php-config.php on line 42

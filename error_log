@@ -1,0 +1,16 @@
+[25-Nov-2025 19:56:58 America/Santiago] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/adlinksc1/public_html/impa/index.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/adlinksc1/public_html/impa/index.php on line 10
+[25-Nov-2025 20:07:09 America/Santiago] Sesión creada para usuario: admin
+[25-Nov-2025 20:19:41 America/Santiago] Sesión creada para usuario: admin
+[25-Nov-2025 21:08:35 America/Santiago] Sesión creada para usuario: admin
+[25-Nov-2025 21:14:52 America/Santiago] Sesión creada para usuario: admin
+[25-Nov-2025 21:18:22 America/Santiago] Sesión creada para usuario: admin
+[25-Nov-2025 22:07:08 America/Santiago] Sesión creada para usuario: admin
+[25-Nov-2025 22:08:16 America/Santiago] Sesión creada para usuario: admin
+[25-Nov-2025 22:11:05 America/Santiago] Sesión creada para usuario: admin
+[26-Nov-2025 10:55:16 America/Santiago] Sesión creada para usuario: admin
+[26-Nov-2025 10:56:30 America/Santiago] Sesión creada para usuario: admin
+[26-Nov-2025 16:39:20 America/Santiago] Sesión creada para usuario: admin
+[26-Nov-2025 17:09:34 America/Santiago] Sesión creada para usuario: admin
