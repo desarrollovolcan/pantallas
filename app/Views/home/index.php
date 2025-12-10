@@ -18,7 +18,7 @@
             <div class="left-column">
                 <!-- Logo Section -->
                 <div class="logo-section">
-                    <img src="uploads/logo/logo.png" alt="Logo" onerror="this.style.display='none'">
+                    <img src="<?php echo base_path('uploads/logo/logo.png'); ?>" alt="Logo" onerror="this.style.display='none'">
                 </div>
                 
                 <!-- Weather Section -->
@@ -103,18 +103,20 @@
                         <?php if (!empty($videos)): ?>
                             <?php 
                             $video_archivo = $videos[0]['archivo_video'];
-                            $video_path = "uploads/videos/" . $video_archivo;
+                            $video_relative = "uploads/videos/" . $video_archivo;
+                            $video_path = __DIR__ . "/../../../" . $video_relative;
+                            $video_url = base_path($video_relative);
                             ?>
                             <?php if (file_exists($video_path)): ?>
-                                <video 
+                                <video
                                     id="current-video"
-                                    width="100%" 
-                                    height="100%" 
-                                    autoplay 
-                                    muted 
+                                    width="100%"
+                                    height="100%"
+                                    autoplay
+                                    muted
                                     controls
                                     onended="rotateVideo()">
-                                    <source src="<?php echo $video_path; ?>" type="video/mp4">
+                                    <source src="<?php echo $video_url; ?>" type="video/mp4">
                                     Tu navegador no soporta el elemento video.
                                 </video>
                             <?php else: ?>
@@ -219,7 +221,8 @@
                     const videoElement = document.getElementById('current-video');
                     
                     if (videoElement && currentVideo) {
-                        const newVideoPath = `uploads/videos/${currentVideo.archivo_video}`;
+                        const basePath = "<?php echo BASE_PATH === '' ? '' : BASE_PATH; ?>";
+                        const newVideoPath = `${basePath}/uploads/videos/${currentVideo.archivo_video}`;
                         console.log('Nuevo video path:', newVideoPath);
                         videoElement.src = newVideoPath;
                         videoElement.load(); // Recargar el video
