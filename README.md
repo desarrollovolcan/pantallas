@@ -7,11 +7,11 @@ Nuevo ejemplo MVC (PHP + SQLite) basado en la estructura existente. Incluye inst
 
 ## Cómo ejecutar
 1. Instala dependencias del sistema si aún no las tienes (solo PHP con SQLite es necesario).
-2. Inicia el servidor embebido de PHP apuntando al front controller del nuevo proyecto:
+2. Inicia el servidor embebido de PHP desde la raíz del proyecto (el `index.php` principal reenvía al nuevo MVC):
    ```bash
-   php -S localhost:8000 -t mvc_app/public
+   php -S localhost:8000 -t .
    ```
-3. Abre `http://localhost:8000` en tu navegador.
+3. Abre `http://localhost:8000` en tu navegador. El instalador se ejecuta automáticamente al entrar a `/`.
 
 La primera carga ejecuta el instalador, crea `mvc_app/storage/database.sqlite`, genera las tablas `users` y `screens` y registra el usuario administrador:
 - Usuario: `admin@local`
