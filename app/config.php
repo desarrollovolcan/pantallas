@@ -1,30 +1,34 @@
 <?php
 session_start();
 
-// Configuración de la aplicación
-const APP_NAME = 'Dashboard Corporativo';
-const APP_VERSION = '1.0.0';
+// Rutas base calculadas contra el document root real
+$projectRoot = realpath(__DIR__ . '/..');
+$documentRoot = realpath($_SERVER['DOCUMENT_ROOT'] ?? $projectRoot);
 
-// Base URL dinámica para funcionar en subdirectorios
-$scriptPath = str_replace('\\', '/', $_SERVER['SCRIPT_NAME'] ?? '');
-$computedBasePath = rtrim(dirname($scriptPath), '/');
-
-// Normalizar base path
-if ($computedBasePath === '.' || $computedBasePath === '/') {
-    $computedBasePath = '';
+$relativeBase = '';
+if ($projectRoot && $documentRoot && str_starts_with($projectRoot, $documentRoot)) {
+    $relativeBase = trim(str_replace($documentRoot, '', $projectRoot), DIRECTORY_SEPARATOR);
 }
 
-define('BASE_PATH', $computedBasePath);
+$normalizedBase = $relativeBase === ''
+    ? ''
+    : '/' . str_replace(DIRECTORY_SEPARATOR, '/', $relativeBase);
+
+define('BASE_PATH', $normalizedBase);
 define(
     'BASE_URL',
     sprintf(
         '%s://%s%s%s',
         (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http',
         $_SERVER['HTTP_HOST'] ?? 'localhost',
-        $computedBasePath,
-        $computedBasePath === '' ? '/' : ''
+        BASE_PATH,
+        BASE_PATH === '' ? '/' : ''
     )
 );
+
+// Configuración de la aplicación
+const APP_NAME = 'Dashboard Corporativo';
+const APP_VERSION = '1.0.0';
 
 // Configuración de la base de datos
 const DB_HOST = 'localhost';

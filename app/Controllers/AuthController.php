@@ -33,7 +33,7 @@ class AuthController extends Controller
     public function logout(): void
     {
         Auth::logout();
-        header('Location: ' . (BASE_PATH === '' ? '/' : BASE_PATH . '/'));
+        header('Location: ' . base_path());
     }
 }
 ?>

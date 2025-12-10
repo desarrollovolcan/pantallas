@@ -17,7 +17,22 @@ function verifyPassword(string $password, string $hash): bool
 function base_path(string $path = ''): string
 {
     $trimmed = ltrim($path, '/');
-    $prefix = BASE_PATH === '' ? '' : BASE_PATH;
-    return $prefix . '/' . $trimmed;
+    $base = BASE_PATH;
+
+    if ($trimmed === '') {
+        return $base === '' ? '/' : $base;
+    }
+
+    return ($base === '' ? '' : rtrim($base, '/')) . '/' . $trimmed;
+}
+
+function base_url(string $path = ''): string
+{
+    $trimmed = ltrim($path, '/');
+    if ($trimmed === '') {
+        return rtrim(BASE_URL, '/');
+    }
+
+    return rtrim(BASE_URL, '/') . '/' . $trimmed;
 }
 ?>
